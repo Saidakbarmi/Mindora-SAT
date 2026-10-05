@@ -1,0 +1,620 @@
+/* ==========================================================================
+   MINDORA DESIGN SYSTEM
+   "Clear mind. Higher score."
+   Atmospheric Teal + Multi-Level Glassmorphism + Refined Hierarchy
+   ========================================================================== */
+
+:root {
+  /* Brand Core Colors */
+  --primary-deep: #12343B;
+  --bg-deep: #0B252C;
+  --bg-darker: #06191E;
+  --teal-primary: #2F7F78;
+  --teal-light: #3D9990;
+  --teal-dark: #1F5953;
+  --mint: #8FE3D0;
+  --soft-mint: #CDEFE7;
+  --sky: #A7D7E8;
+  --ice: #EAF7F5;
+  --warm-white: #F6F8F6;
+  --white: #FFFFFF;
+
+  /* Typography / Text Tokens */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(220, 240, 237, 0.82);
+  --text-muted: rgba(185, 215, 210, 0.55);
+  --text-dark-primary: #102A2F;
+  --text-dark-secondary: #617377;
+
+  /* Accent & Status */
+  --accent-lime: #A8F06A;
+  --accent-glow: rgba(168, 240, 106, 0.35);
+  --success: #48B99B;
+  --warning: #E8B85A;
+  --error: #E47B7B;
+  --info: #79C5E8;
+
+  /* 3-LEVEL SURFACE SYSTEM (Refinement Rule 06) */
+  /* Level 1: Hero Glass */
+  --glass-hero-bg: rgba(14, 44, 52, 0.78);
+  --glass-hero-border: rgba(143, 227, 208, 0.25);
+  --glass-hero-shadow: 0 16px 48px rgba(3, 15, 18, 0.45);
+
+  /* Level 2: Supporting Glass */
+  --glass-bg-card: rgba(11, 37, 44, 0.62);
+  --glass-border: rgba(143, 227, 208, 0.12);
+  --glass-border-hover: rgba(143, 227, 208, 0.28);
+  --shadow-card: 0 12px 36px rgba(3, 14, 17, 0.38);
+
+  /* Level 3: Utility / Flat Surfaces */
+  --utility-bg: rgba(18, 52, 59, 0.42);
+  --utility-border: rgba(255, 255, 255, 0.08);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-pill: 9999px;
+
+  /* Blur */
+  --blur-glass: blur(20px);
+  --blur-intense: blur(28px);
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-fast: 160ms var(--ease-spring);
+  --transition-normal: 240ms var(--ease-spring);
+  --transition-slow: 400ms var(--ease-spring);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(11, 37, 44, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(143, 227, 208, 0.2);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(143, 227, 208, 0.4);
+}
+
+/* Atmospheric Background Wrapper */
+.mindora-ambient-viewport {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background-color: var(--bg-darker);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   MINDORA ADAPTIVE ATMOSPHERE SYSTEM
+   One Brand + Multiple Contextual Atmospheres
+   Visual Layer Only • Clearly Perceptible • High Legibility
+   ========================================================================== */
+
+.ambient-background-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #06191E;
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease-out;
+}
+
+.ambient-background-layer::before,
+.ambient-background-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. DASHBOARD (Default): Calm Morning Momentum & Dawn Horizon
+   -------------------------------------------------------------------------- */
+.ambient-background-layer,
+.ambient-background-layer.atmosphere-dashboard {
+  background: radial-gradient(ellipse 95% 70% at 75% 12%, rgba(72, 185, 155, 0.28) 0%, rgba(47, 127, 120, 0.16) 42%, #06191E 85%);
+}
+
+.ambient-background-layer::before,
+.ambient-background-layer.atmosphere-dashboard::before {
+  background: 
+    radial-gradient(ellipse 70% 50% at 75% 15%, rgba(143, 227, 208, 0.20) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 45% at 30% 10%, rgba(72, 185, 155, 0.14) 0%, transparent 70%);
+  opacity: 1;
+}
+
+.ambient-background-layer::after,
+.ambient-background-layer.atmosphere-dashboard::after {
+  /* Visible dawn horizon glow band across the upper third */
+  background: linear-gradient(
+    180deg, 
+    transparent 0%, 
+    transparent 32%, 
+    rgba(143, 227, 208, 0.08) 46%, 
+    rgba(47, 127, 120, 0.12) 52%, 
+    transparent 72%
+  );
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. HOMEWORK: Structured Workspace & Architectural Drafting Grid
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-homework {
+  background: radial-gradient(ellipse 85% 65% at 28% 28%, rgba(47, 127, 120, 0.28) 0%, rgba(18, 52, 59, 0.16) 50%, #06191E 85%);
+}
+
+.ambient-background-layer.atmosphere-homework::before {
+  /* Focused desk illumination on left study workspace */
+  background: 
+    radial-gradient(circle at 25% 30%, rgba(72, 185, 155, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(18, 52, 59, 0.20) 0%, transparent 60%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-homework::after {
+  /* Clearly perceptible architectural grid (5-6% opacity) with subtle diagonal structure */
+  background-image: 
+    linear-gradient(rgba(143, 227, 208, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 227, 208, 0.055) 1px, transparent 1px),
+    linear-gradient(135deg, transparent 49%, rgba(143, 227, 208, 0.04) 50%, transparent 51%);
+  background-size: 44px 44px, 44px 44px, 132px 132px;
+  background-position: -1px -1px, -1px -1px, 0 0;
+  mask-image: radial-gradient(ellipse 90% 80% at 40% 40%, black 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 40% 40%, black 35%, transparent 90%);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   3. PRACTICE TESTS: Exam Hall Precision & Vertical Focus Column
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-practice {
+  background: radial-gradient(ellipse 75% 65% at 50% 16%, rgba(61, 153, 144, 0.28) 0%, rgba(8, 44, 53, 0.18) 45%, #051822 85%);
+}
+
+.ambient-background-layer.atmosphere-practice::before {
+  /* Vertical concentration light column */
+  background: 
+    linear-gradient(90deg, transparent 15%, rgba(72, 185, 155, 0.12) 50%, transparent 85%),
+    radial-gradient(ellipse 60% 45% at 50% 18%, rgba(143, 227, 208, 0.18) 0%, transparent 65%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-practice::after {
+  /* Vertical measurement calibration tick marks (6% opacity) */
+  background-image: 
+    repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(143, 227, 208, 0.055) 80px, transparent 81px),
+    repeating-linear-gradient(180deg, transparent 0, transparent 159px, rgba(143, 227, 208, 0.04) 160px, transparent 161px);
+  mask-image: radial-gradient(ellipse 75% 85% at 50% 30%, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 85% at 50% 30%, black 40%, transparent 90%);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. LEADERBOARD: Visible Constellation Network of Peers
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-leaderboard {
+  background: radial-gradient(ellipse 85% 65% at 75% 25%, rgba(47, 127, 120, 0.24) 0%, rgba(11, 37, 44, 0.15) 45%, #051419 85%);
+}
+
+.ambient-background-layer.atmosphere-leaderboard::before {
+  background: 
+    radial-gradient(circle at 75% 25%, rgba(143, 227, 208, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 20% 65%, rgba(72, 185, 155, 0.14) 0%, transparent 55%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-leaderboard::after {
+  /* Micro constellation nodes glowing in the night sky */
+  background-image: 
+    radial-gradient(3px 3px at 15% 20%, rgba(143, 227, 208, 0.85) 40%, transparent),
+    radial-gradient(4px 4px at 32% 16%, rgba(168, 240, 106, 0.90) 40%, transparent),
+    radial-gradient(3px 3px at 68% 28%, rgba(143, 227, 208, 0.80) 40%, transparent),
+    radial-gradient(4.5px 4.5px at 84% 20%, rgba(143, 227, 208, 0.90) 40%, transparent),
+    radial-gradient(3px 3px at 42% 72%, rgba(143, 227, 208, 0.75) 40%, transparent),
+    radial-gradient(3.5px 3.5px at 22% 66%, rgba(168, 240, 106, 0.80) 40%, transparent),
+    radial-gradient(3px 3px at 82% 64%, rgba(143, 227, 208, 0.75) 40%, transparent),
+    radial-gradient(2.5px 2.5px at 58% 45%, rgba(143, 227, 208, 0.70) 40%, transparent);
+  background-size: 100% 100%;
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. ATTENDANCE: Rhythm & Concentric Daily Habit Rings
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-attendance {
+  background: radial-gradient(ellipse 85% 70% at 50% 82%, rgba(47, 127, 120, 0.25) 0%, rgba(11, 37, 44, 0.14) 45%, #06191E 85%);
+}
+
+.ambient-background-layer.atmosphere-attendance::before {
+  /* Centered temporal glow pool */
+  background: radial-gradient(ellipse 70% 50% at 50% 85%, rgba(72, 185, 155, 0.18) 0%, transparent 65%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-attendance::after {
+  /* Clearly visible concentric daily habit rings (6-8% opacity) */
+  background-image: radial-gradient(
+    circle at 50% 88%, 
+    transparent 0, 
+    transparent 130px, 
+    rgba(143, 227, 208, 0.08) 131px, 
+    transparent 133px, 
+    transparent 230px, 
+    rgba(72, 185, 155, 0.07) 231px, 
+    transparent 233px, 
+    transparent 350px, 
+    rgba(143, 227, 208, 0.06) 351px, 
+    transparent 353px, 
+    transparent 490px, 
+    rgba(47, 127, 120, 0.05) 491px, 
+    transparent 493px,
+    transparent 650px,
+    rgba(143, 227, 208, 0.04) 651px,
+    transparent 653px
+  );
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   6. ACHIEVEMENTS: Milestones, Orbit Arcs & Recognition
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-achievements {
+  background: radial-gradient(ellipse 80% 60% at 50% 16%, rgba(72, 185, 155, 0.26) 0%, rgba(18, 52, 59, 0.16) 45%, #071C22 85%);
+}
+
+.ambient-background-layer.atmosphere-achievements::before {
+  /* Milestone warmth: radiant mint + lime halo */
+  background: 
+    radial-gradient(ellipse 65% 45% at 50% 14%, rgba(143, 227, 208, 0.20) 0%, transparent 65%),
+    radial-gradient(circle at 80% 28%, rgba(168, 240, 106, 0.12) 0%, transparent 45%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-achievements::after {
+  /* Orbital arcs framing the achievements header (7% opacity) */
+  background-image: radial-gradient(
+    ellipse 90% 42% at 50% 12%, 
+    transparent 0, 
+    transparent 250px, 
+    rgba(143, 227, 208, 0.08) 251px, 
+    transparent 253px, 
+    transparent 390px, 
+    rgba(168, 240, 106, 0.06) 391px, 
+    transparent 393px,
+    transparent 550px,
+    rgba(143, 227, 208, 0.05) 551px,
+    transparent 553px
+  );
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   7. STUDY TOOLS: Scholar Workspace & Ruled Archival Texture
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-flashcards,
+.ambient-background-layer.atmosphere-vocabulary,
+.ambient-background-layer.atmosphere-notes,
+.ambient-background-layer.atmosphere-mistakes {
+  background: radial-gradient(ellipse 75% 55% at 45% 20%, rgba(47, 127, 120, 0.18) 0%, #05161C 80%);
+}
+
+.ambient-background-layer.atmosphere-flashcards::before,
+.ambient-background-layer.atmosphere-vocabulary::before,
+.ambient-background-layer.atmosphere-notes::before,
+.ambient-background-layer.atmosphere-mistakes::before {
+  background: radial-gradient(ellipse 60% 40% at 50% 25%, rgba(72, 185, 155, 0.10) 0%, transparent 60%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-flashcards::after,
+.ambient-background-layer.atmosphere-vocabulary::after,
+.ambient-background-layer.atmosphere-notes::after,
+.ambient-background-layer.atmosphere-mistakes::after {
+  /* Clean ruled archival notebook lines (3.5% opacity for text comfort) */
+  background-image: repeating-linear-gradient(
+    180deg, 
+    transparent 0, 
+    transparent 27px, 
+    rgba(143, 227, 208, 0.035) 28px
+  );
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 40%, transparent 90%);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   8. PROGRESS: Diagnostic Topography & Score Trajectory
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-progress {
+  background: radial-gradient(ellipse 90% 65% at 65% 26%, rgba(72, 185, 155, 0.25) 0%, rgba(11, 37, 44, 0.15) 45%, #061A20 85%);
+}
+
+.ambient-background-layer.atmosphere-progress::before {
+  background: 
+    linear-gradient(135deg, transparent 40%, rgba(47, 127, 120, 0.14) 60%, transparent 80%),
+    radial-gradient(ellipse 70% 50% at 60% 30%, rgba(72, 185, 155, 0.16) 0%, transparent 65%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-progress::after {
+  /* Visible topographic contour lines (6-7% opacity) complementing the trajectory chart */
+  background-image: radial-gradient(
+    ellipse 130% 65% at 50% 100%, 
+    transparent 0, 
+    transparent 150px, 
+    rgba(143, 227, 208, 0.07) 151px, 
+    transparent 153px, 
+    transparent 280px, 
+    rgba(47, 127, 120, 0.07) 281px, 
+    transparent 283px, 
+    transparent 430px, 
+    rgba(143, 227, 208, 0.06) 431px, 
+    transparent 433px,
+    transparent 590px,
+    rgba(72, 185, 155, 0.05) 591px,
+    transparent 593px
+  );
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   9. LEARN & VIDEO LESSON: Protected, Theater Focus, Ultra-Minimal
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-learn,
+.ambient-background-layer.atmosphere-video-lesson {
+  background: radial-gradient(ellipse 65% 45% at 50% 15%, rgba(47, 127, 120, 0.14) 0%, #041216 80%);
+}
+
+.ambient-background-layer.atmosphere-learn::before,
+.ambient-background-layer.atmosphere-video-lesson::before {
+  background: radial-gradient(circle at 50% 18%, rgba(72, 185, 155, 0.08) 0%, transparent 60%);
+  opacity: 1;
+}
+
+.ambient-background-layer.atmosphere-learn::after,
+.ambient-background-layer.atmosphere-video-lesson::after {
+  background: radial-gradient(circle at center, transparent 40%, rgba(4, 18, 22, 0.35) 100%);
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   10. SETTINGS: Quiet, Neutral Utility
+   -------------------------------------------------------------------------- */
+.ambient-background-layer.atmosphere-settings {
+  background: #041215;
+}
+
+.ambient-background-layer.atmosphere-settings::before,
+.ambient-background-layer.atmosphere-settings::after {
+  opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PERIMETER VIGNETTE (Soft Edge Framing, Leaves Negative Space Transparent)
+   -------------------------------------------------------------------------- */
+.ambient-overlay-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Soft perimeter vignette that lets the atmosphere shine clearly in the center and negative space */
+  background: radial-gradient(ellipse 100% 90% at 50% 25%, transparent 35%, rgba(4, 18, 22, 0.45) 85%);
+  transition: opacity var(--transition-slow);
+}
+
+@media (max-width: 768px) {
+  .ambient-background-layer::after {
+    opacity: 0.6 !important;
+  }
+}
+
+/* App Layout Grid */
+.mindora-app-layout {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 3 LEVELS OF SURFACES */
+/* Level 1: Hero Glass */
+.glass-hero {
+  background: var(--glass-hero-bg);
+  backdrop-filter: var(--blur-intense);
+  -webkit-backdrop-filter: var(--blur-intense);
+  border: 1px solid var(--glass-hero-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-hero-shadow);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+/* Level 2: Supporting Glass */
+.glass-card {
+  background: var(--glass-bg-card);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.glass-card:hover {
+  border-color: var(--glass-border-hover);
+}
+
+/* Level 3: Utility / Flat Surfaces */
+.utility-card {
+  background: var(--utility-bg);
+  border: 1px solid var(--utility-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.utility-card:hover {
+  background: rgba(18, 52, 59, 0.7);
+  border-color: rgba(143, 227, 208, 0.22);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(143, 227, 208, 0.35);
+}
+
+/* Primary Mint CTA Button */
+.btn-primary-mint {
+  background: linear-gradient(135deg, #8FE3D0 0%, #48B99B 100%);
+  color: #08242A;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(72, 185, 155, 0.32);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary-mint:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px rgba(143, 227, 208, 0.45);
+  background: linear-gradient(135deg, #9DF0DE 0%, #54C9AB 100%);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 13.5px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--glass-border-hover);
+  color: var(--white);
+}
+
+/* Status Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.badge-in-progress {
+  background: rgba(72, 185, 155, 0.16);
+  color: #8FE3D0;
+  border: 1px solid rgba(143, 227, 208, 0.28);
+}
+
+.badge-not-started {
+  background: rgba(167, 215, 232, 0.14);
+  color: #A7D7E8;
+  border: 1px solid rgba(167, 215, 232, 0.25);
+}
+
+.badge-overdue {
+  background: rgba(228, 123, 123, 0.16);
+  color: #F89B9B;
+  border: 1px solid rgba(228, 123, 123, 0.3);
+}
+
+.badge-completed {
+  background: rgba(168, 240, 106, 0.14);
+  color: #A8F06A;
+  border: 1px solid rgba(168, 240, 106, 0.28);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.28s var(--ease-spring) forwards;
+}
